@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_bftype" value="name:equipment;datatype:varchar" />
+	<infoitem key="UD_bfmodel" value="name:equipment;datatype:varchar" />
+	<infoitem key="UD_bfsite" value="name:equipment;datatype:varchar" />
+	<infoitem key="UD_bfstatus" value="name:equipment;datatype:varchar" />
+	<infoitem key="UD_imagevers" value="name:equipment;datatype:varchar" />
+</info>

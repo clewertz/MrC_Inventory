@@ -1,0 +1,15 @@
+<site-list version="1">
+  <created-by>
+    <tool>EMIESiteListManager</tool>
+    <version>10.0.14357.1004</version>
+    <date-created>10/10/2017 15:22:24</date-created>
+  </created-by>
+  <site url="connect.mrcooper.com">
+    <compat-mode>Default</compat-mode>
+    <open-in>IE11</open-in>
+  </site>
+  <site url="login.microsoftonline.com/7653af48-8d24-4c43-bbaa-b8547139c0f5/oauth2/authorize">
+    <compat-mode>Default</compat-mode>
+    <open-in>IE11</open-in>
+  </site>
+</site-list>

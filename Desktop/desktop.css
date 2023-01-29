@@ -1,0 +1,138 @@
+body {
+	background-color: #FFFFFF;
+	
+}
+
+#p{
+	font-size:14px;
+	font-family:arial;
+	font-weight:bold;
+	color:#000000;
+
+}
+
+#header {
+	width: 800px;
+	height: 50px;
+	text-align: center;
+	font-size: 36px;
+	font-stretch:expanded;
+}	
+
+
+
+#header1 {
+	margin: 0 auto;
+	width: 950px;
+	height: 40px;
+	text-align: center;
+	font-size: 36px;
+	font-stretch:expanded;
+	background-color: rgb(247, 148, 66);
+}
+
+#header2 {
+	margin: 0 auto;
+	width: 840px;
+	height: 40px;
+	text-align: center;
+	font-size: 25px;
+	font-stretch:expanded;
+}
+
+#header3 {
+	margin: 0 auto;
+	width: 850px;
+	height: 40px;
+	text-align: center;
+	font-size: 36px;
+	font-stretch:expanded;
+	background-color:#aaa;
+
+}
+
+#header4 {
+	margin: 0 auto;
+	width: 400px;
+	height: 40px;
+	text-align: center;
+	font-size: 36px;
+	font-stretch:expanded;
+	background-color:#06F;
+}
+
+#links {
+	width: 200px;
+	height: 400px;
+}
+
+#menu {
+	width: 800px;
+	height: 42px;
+	background-image: url(graphics/CP-Menu.gif);
+	
+}
+
+#menu2 {
+	float: left;
+	
+}
+
+
+#buttons {
+	margin: 0 auto;
+	width: 800px;
+	height: 20px;
+	text-align: center;
+}
+
+#menu2 ul {
+	margin: 0px 0px 0px 0px;
+	padding:0px;
+	list-style:none;
+}
+
+#menu2 ul li{
+	padding: 7px 0px 7px 0px; 
+	
+}
+
+#menu2 ul li a{
+	font-size:14px;
+	font-family:arial;
+	font-weight:bold;
+	color:#000000;
+
+}
+
+#menu2 ul li a:hover{
+	font-size:14px;
+	font-family:arial;
+	font-weight:bold;
+	color:#ffffff;
+
+}
+
+#p{
+	font-size:14px;
+	font-family:arial;
+	font-weight:bold;
+	color:#000000;
+
+}
+
+.bold {
+	font-weight: bold;
+
+}
+
+#mainbody{
+	margin: 20px 0px 0px 200px; 
+	
+}
+
+#mainbody2{
+	margin: 5px 0px 0px 10px; 
+}
+
+
