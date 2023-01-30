@@ -50,19 +50,25 @@ equip_edit_numRows = 0
 %>
 
 <%
+' checkbox implementation
+Function CheckIf(condition)
+  If (equip_edit.Fields.Item(condition).Value) = "on" Then
+    Response.Write( "checked" )
+  End If
+End Function
+%>
+
+<%
 'Update SQL with new values from form 
 
 If (CStr(Request("MM_update")) = "update") Then
   If (Not MM_abortEdit) Then
     ' execute the update
     Dim MM_editCmd
-	
-	If 
-	Then
 
     Set MM_editCmd = Server.CreateObject ("ADODB.Command")
     MM_editCmd.ActiveConnection = MM_NationStar_STRING
-    MM_editCmd.CommandText = "UPDATE dbo.DesktopInventory SET DInType = ?, DInModel = ?, DInSerialNum = ?, DInStatus = ?, DInNotes = ?, DInSite = ?, DInImageVer = ?, DInTicketNum = ?, DInAssignedUser = ?, DInDeployedDate = ?, DInEndDate = ?, DInComputerName = ?, DInAssetTagNum = ?, DInCostCenter = ?, DInCubeLocation = ?, DInUserID = ?, DInArcherNum = ?, DInAbsolute = ?, DInLMI, = ?, DInBitLocker, = ?, DInRDP= ?  WHERE DInSerialNum = ?"
+    MM_editCmd.CommandText = "UPDATE dbo.DesktopInventory SET DInType = ?, DInModel = ?, DInSerialNum = ?, DInStatus = ?, DInNotes = ?, DInSite = ?, DInImageVer = ?, DInTicketNum = ?, DInAssignedUser = ?, DInDeployedDate = ?, DInEndDate = ?, DInComputerName = ?, DInAssetTagNum = ?, DInCostCenter = ?, DInCubeLocation = ?, DInUserID = ?, DInArcherNum = ?, DInBitLocker = ?, DInLMI = ?, DInAbsolute = ?, DInRDP = ?  WHERE DInSerialNum = ?"
     MM_editCmd.Prepared = true
     MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param1", 201, 1, 50, Request.Form("DIntype")) ' adLongVarChar
     MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param2", 201, 1, 50, Request.Form("DInmodel")) ' adLongVarChar
@@ -81,13 +87,14 @@ If (CStr(Request("MM_update")) = "update") Then
 	MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param15", 201, 1, 50, Request.Form("DInCubeLocation")) ' adLongVarChar
 	MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param16", 201, 1, 50, Request.Form("DInUserID")) ' adLongVarChar
 	MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param17", 201, 1, 50, Request.Form("DInArcherNum")) ' adLongVarChar
-	MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param18", 5, 1, -1, MM_IIF (Request.Form("DInAbsolute"), Request.Form("DInAbsolute"), null)) ' adDouble
-	MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param19", 5, 1, -1, MM_IIF (Request.Form("DInLMI"), Request.Form("DInLMI"), null)) ' adDouble
-	MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param20", 5, 1, -1, MM_IIF (Request.Form("DInBitLocker"), Request.Form("DInBitLocker"), null)) ' adDouble
-	MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param21", 5, 1, -1, MM_IIF (Request.Form("DInRDP"), Request.Form("DInRDP"), null)) ' adDouble
+	MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param18", 201, 1, 50, MM_IIF (Request.Form("DInBitLocker"), Request.Form("DInBitLocker"), null))
+	MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param19", 201, 1, 50, MM_IIF (Request.Form("DInLMI"), Request.Form("DInLMI"), null))
+	MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param20", 201, 1, 50, MM_IIF (Request.Form("DInAbsolute"), Request.Form("DInAbsolute"), null))
+	MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param21", 201, 1, 50, MM_IIF (Request.Form("DInRDP"), Request.Form("DInRDP"), null))
 	MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param22", 200, 1, 255, MM_IIF(Request.Form("MM_recordId"), Request.Form("MM_recordId"), null)) ' adVarChar
     MM_editCmd.Execute
     MM_editCmd.ActiveConnection.Close
+	
 	
 
     ' append the query string to the redirect URL
@@ -378,30 +385,10 @@ DInsite_numRows = 0
 	<input name="DInMacAddress" type="text" id="DInMacAddress" value="<%=(equip_edit.Fields.Item("DInMacAddress").Value)%>" maxlength="40" class="txtBox" readonly/> 
 </div>
 <div style="float:left; margin: 5px;">
-	<input type="checkbox" name="DInLMI" value="<%=(
-		If (equip_edit.Fields.Item("DInLMI").Value = 1) Then
-			DInLMI = "on"
-		Else DInLMI = <>
-		End If
-		)%>" /> LMI
-	<input type="checkbox" name="DInBitLocker" value="<%=(
-		If (equip_edit.Fields.Item("DInBitLocker").Value = 1) Then
-			DInBitLocker = "on"
-		Else DInBitLocker = <>	
-		End If
-		)%>" /> BitLocker
-	<input type="checkbox" id="DInAbsolute" value="<%=(
-		If (equip_edit.Fields.Item("DInAbsolute").Value = 1) Then
-			DInAbsolute = "on"
-		Else DInAbsolute = <>
-		End If
-		)%>" /> Absolute
-	<input type="checkbox" id="DInRDP" value="<%=(
-		If (equip_edit.Fields.Item("DInRDP").Value = 1) Then
-			DInRDP = "on"
-		Else DInRDP = <>
-		End If
-		)%>" /> RDP
+	<input type="checkbox" id="DInLMI" name="DInLMI" <%CheckIf("DInLMI")%>  > LMI
+	<input type="checkbox" id="DInBitLocker" name="DInBitLocker" <%CheckIf("DInBitLocker")%> > BitLocker
+	<input type="checkbox" id="DInAbsolute" name="DInAbsolute" <%CheckIf("DInAbsolute")%> > Absolute
+	<input type="checkbox" id="DInRDP" name="DInRDP" <%CheckIf("DInRDP")%> > RDP
 </div>
 <div style="float:left; margin: 5px;">	
 	Notes: <br />
