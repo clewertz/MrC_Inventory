@@ -1,0 +1,18 @@
+----------------------------------------------------
+Run the query below on the SQL server or via the SQL Management Studio 
+This will add the needed columns to the DesktopInventory table for the 
+checkboxes to work
+
+You may also have a backup or historical table you will want to do the same 
+for. In the case you want to run on a different table just change the 
+table name within ALTER TABLE
+
+-----------------------------------------------------
+
+
+ALTER TABLE DesktopInventory
+ADD
+	DInLMI varchar(50) NULL,
+	DInBitLocker varchar(50) NULL,
+	DInAbsolute varchar(50) NULL,
+	DInRDP varchar(50) NULL;

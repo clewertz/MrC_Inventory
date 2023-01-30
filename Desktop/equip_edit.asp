@@ -12,6 +12,7 @@ End If
 Dim MM_abortEdit
 MM_abortEdit = false
 %>
+
 <%
 ' IIf implementation
 Function MM_IIf(condition, ifTrue, ifFalse)
@@ -24,6 +25,7 @@ End Function
 %>
 
 <%
+' Get serial number from request
 Dim serial_num
 serial_num = ""
 If (Request.QueryString("DInSerialNum") <> "") Then 
@@ -32,6 +34,7 @@ End If
 %>
 
 <%
+'Select record from SQL where serial_num matches
 Dim equip_edit
 Dim equip_edit_cmd
 Dim equip_edit_numRows
@@ -46,13 +49,18 @@ Set equip_edit = equip_edit_cmd.Execute
 equip_edit_numRows = 0
 %>
 
-
-
-
-
-
+<%
+' checkbox implementation
+Function CheckIf(condition)
+  If (equip_edit.Fields.Item(condition).Value) = "on" Then
+    Response.Write( "checked" )
+  End If
+End Function
+%>
 
 <%
+'Update SQL with new values from form 
+
 If (CStr(Request("MM_update")) = "update") Then
   If (Not MM_abortEdit) Then
     ' execute the update
@@ -60,7 +68,7 @@ If (CStr(Request("MM_update")) = "update") Then
 
     Set MM_editCmd = Server.CreateObject ("ADODB.Command")
     MM_editCmd.ActiveConnection = MM_NationStar_STRING
-    MM_editCmd.CommandText = "UPDATE dbo.DesktopInventory SET DInType = ?, DInModel = ?, DInSerialNum = ?, DInStatus = ?, DInNotes = ?, DInSite = ?, DInImageVer = ?, DInTicketNum = ?, DInAssignedUser = ?, DInDeployedDate = ?, DInEndDate = ?, DInComputerName = ?, DInAssetTagNum = ?, DInCostCenter = ?, DInCubeLocation = ?, DInUserID = ?, DInArcherNum = ?  WHERE DInSerialNum = ?"
+    MM_editCmd.CommandText = "UPDATE dbo.DesktopInventory SET DInType = ?, DInModel = ?, DInSerialNum = ?, DInStatus = ?, DInNotes = ?, DInSite = ?, DInImageVer = ?, DInTicketNum = ?, DInAssignedUser = ?, DInDeployedDate = ?, DInEndDate = ?, DInComputerName = ?, DInAssetTagNum = ?, DInCostCenter = ?, DInCubeLocation = ?, DInUserID = ?, DInArcherNum = ?, DInBitLocker = ?, DInLMI = ?, DInAbsolute = ?, DInRDP = ?  WHERE DInSerialNum = ?"
     MM_editCmd.Prepared = true
     MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param1", 201, 1, 50, Request.Form("DIntype")) ' adLongVarChar
     MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param2", 201, 1, 50, Request.Form("DInmodel")) ' adLongVarChar
@@ -79,9 +87,14 @@ If (CStr(Request("MM_update")) = "update") Then
 	MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param15", 201, 1, 50, Request.Form("DInCubeLocation")) ' adLongVarChar
 	MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param16", 201, 1, 50, Request.Form("DInUserID")) ' adLongVarChar
 	MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param17", 201, 1, 50, Request.Form("DInArcherNum")) ' adLongVarChar
-	MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param18", 200, 1, 255, MM_IIF(Request.Form("MM_recordId"), Request.Form("MM_recordId"), null)) ' adVarChar
+	MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param18", 201, 1, 50, MM_IIF (Request.Form("DInBitLocker"), Request.Form("DInBitLocker"), null))
+	MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param19", 201, 1, 50, MM_IIF (Request.Form("DInLMI"), Request.Form("DInLMI"), null))
+	MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param20", 201, 1, 50, MM_IIF (Request.Form("DInAbsolute"), Request.Form("DInAbsolute"), null))
+	MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param21", 201, 1, 50, MM_IIF (Request.Form("DInRDP"), Request.Form("DInRDP"), null))
+	MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param22", 200, 1, 255, MM_IIF(Request.Form("MM_recordId"), Request.Form("MM_recordId"), null)) ' adVarChar
     MM_editCmd.Execute
     MM_editCmd.ActiveConnection.Close
+	
 	
 
     ' append the query string to the redirect URL
@@ -100,6 +113,7 @@ End If
 %>
 
 <%
+' Fill Type drop down list from BF_Resource
 Dim DIntype
 Dim DIntype_cmd
 Dim DIntype_numRows
@@ -115,6 +129,7 @@ DIntype_numRows = 0
 
 
 <%
+' Fill Model drop down list from BF_Resource
 Dim DInmodel
 Dim DInmodel_cmd
 Dim DInmodel_numRows
@@ -129,6 +144,7 @@ DInmodel_numRows = 0
 %>
 
 <%
+' Fill Image Version drop down list from BF_Resource
 Dim DInimagever
 Dim DInimagever_cmd
 Dim DInimagever_numRows
@@ -143,6 +159,7 @@ imagever_numRows = 0
 %>
 
 <%
+' Fill Status drop down list from BF_Resource
 Dim DInstatus
 Dim DInstatus_cmd
 Dim DInstatus_numRows
@@ -157,6 +174,7 @@ DInstatus_numRows = 0
 %>
 
 <%
+' Fill Location drop down list from BF_Resource
 Dim DInsite
 Dim DInsite_cmd
 Dim DInsite_numRows
@@ -365,6 +383,12 @@ DInsite_numRows = 0
 	MAC Address: <br />
 	<label for="DInMacAddress"></label>
 	<input name="DInMacAddress" type="text" id="DInMacAddress" value="<%=(equip_edit.Fields.Item("DInMacAddress").Value)%>" maxlength="40" class="txtBox" readonly/> 
+</div>
+<div style="float:left; margin: 5px;">
+	<input type="checkbox" id="DInLMI" name="DInLMI" <%CheckIf("DInLMI")%>  > LMI
+	<input type="checkbox" id="DInBitLocker" name="DInBitLocker" <%CheckIf("DInBitLocker")%> > BitLocker
+	<input type="checkbox" id="DInAbsolute" name="DInAbsolute" <%CheckIf("DInAbsolute")%> > Absolute
+	<input type="checkbox" id="DInRDP" name="DInRDP" <%CheckIf("DInRDP")%> > RDP
 </div>
 <div style="float:left; margin: 5px;">	
 	Notes: <br />
