@@ -194,7 +194,7 @@ DInsite_numRows = 0
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<title>Nationstar Desktop Dashboard</title>
+<title>MrC Desktop Inventory</title>
 <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 <link rel="stylesheet" type="text/css" href="dash.css" />
 </head>
