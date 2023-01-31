@@ -77,13 +77,13 @@ If (CStr(Request("MM_update")) = "update") Then
     MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param5", 201, 1, 1000, Request.Form("DInnotes")) ' adLongVarChar
     MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param6", 201, 1, 50, Request.Form("DInsite")) ' adLongVarChar
     MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param7", 201, 1, 50, Request.Form("DInimagever")) ' adLongVarChar
-	MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param8", 201, 1, 50, Request.Form("DInticketnum")) ' adLongVarChar
-	MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param9", 201, 1, 50, Request.Form("DInassigneduser")) ' adLongVarChar	
-	MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param10", 135, 1, 10, MM_IIF(Request.Form("DIndeployeddate"), Request.Form("DIndeployeddate"), null)) ' adDBTimeStamp
-	MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param11", 135, 1, 10, MM_IIF(Request.Form("DInenddate"), Request.Form("DInenddate"), null)) ' adDBTimeStamp
-	MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param12", 201, 1, 50, Request.Form("DInComputerName")) ' adLongVarChar
-	MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param13", 5, 1, -1, MM_IIF (Request.Form("DInAssetTagNum"), Request.Form("DInAssetTagNum"), null)) ' adDouble
-	MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param14", 5, 1, -1, MM_IIF (Request.Form("DInCostCenter"), Request.Form("DInCostCenter"), null)) ' adDouble
+    MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param8", 201, 1, 50, Request.Form("DInticketnum")) ' adLongVarChar
+    MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param9", 201, 1, 50, Request.Form("DInassigneduser")) ' adLongVarChar	
+    MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param10", 135, 1, 10, MM_IIF(Request.Form("DIndeployeddate"), Request.Form("DIndeployeddate"), null)) ' adDBTimeStamp
+    MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param11", 135, 1, 10, MM_IIF(Request.Form("DInenddate"), Request.Form("DInenddate"), null)) ' adDBTimeStamp
+    MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param12", 201, 1, 50, Request.Form("DInComputerName")) ' adLongVarChar
+    MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param13", 5, 1, -1, MM_IIF (Request.Form("DInAssetTagNum"), Request.Form("DInAssetTagNum"), null)) ' adDouble
+    MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param14", 5, 1, -1, MM_IIF (Request.Form("DInCostCenter"), Request.Form("DInCostCenter"), null)) ' adDouble
     MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param15", 201, 1, 50, Request.Form("DInCubeLocation")) ' adLongVarChar
     MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param16", 201, 1, 50, Request.Form("DInUserID")) ' adLongVarChar
     MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param17", 201, 1, 50, Request.Form("DInArcherNum")) ' adLongVarChar
