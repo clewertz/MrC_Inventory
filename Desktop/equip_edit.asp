@@ -84,14 +84,14 @@ If (CStr(Request("MM_update")) = "update") Then
 	MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param12", 201, 1, 50, Request.Form("DInComputerName")) ' adLongVarChar
 	MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param13", 5, 1, -1, MM_IIF (Request.Form("DInAssetTagNum"), Request.Form("DInAssetTagNum"), null)) ' adDouble
 	MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param14", 5, 1, -1, MM_IIF (Request.Form("DInCostCenter"), Request.Form("DInCostCenter"), null)) ' adDouble
-	MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param15", 201, 1, 50, Request.Form("DInCubeLocation")) ' adLongVarChar
-	MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param16", 201, 1, 50, Request.Form("DInUserID")) ' adLongVarChar
-	MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param17", 201, 1, 50, Request.Form("DInArcherNum")) ' adLongVarChar
-	MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param18", 201, 1, 50, MM_IIF (Request.Form("DInBitLocker"), Request.Form("DInBitLocker"), null))
-	MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param19", 201, 1, 50, MM_IIF (Request.Form("DInLMI"), Request.Form("DInLMI"), null))
-	MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param20", 201, 1, 50, MM_IIF (Request.Form("DInAbsolute"), Request.Form("DInAbsolute"), null))
-	MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param21", 201, 1, 50, MM_IIF (Request.Form("DInRDP"), Request.Form("DInRDP"), null))
-	MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param22", 200, 1, 255, MM_IIF(Request.Form("MM_recordId"), Request.Form("MM_recordId"), null)) ' adVarChar
+    MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param15", 201, 1, 50, Request.Form("DInCubeLocation")) ' adLongVarChar
+    MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param16", 201, 1, 50, Request.Form("DInUserID")) ' adLongVarChar
+    MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param17", 201, 1, 50, Request.Form("DInArcherNum")) ' adLongVarChar
+    MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param18", 201, 1, 50, MM_IIF (Request.Form("DInBitLocker"), Request.Form("DInBitLocker"), null))
+    MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param19", 201, 1, 50, MM_IIF (Request.Form("DInLMI"), Request.Form("DInLMI"), null))
+    MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param20", 201, 1, 50, MM_IIF (Request.Form("DInAbsolute"), Request.Form("DInAbsolute"), null))
+    MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param21", 201, 1, 50, MM_IIF (Request.Form("DInRDP"), Request.Form("DInRDP"), null))
+    MM_editCmd.Parameters.Append MM_editCmd.CreateParameter("param22", 200, 1, 255, MM_IIF(Request.Form("MM_recordId"), Request.Form("MM_recordId"), null)) ' adVarChar
     MM_editCmd.Execute
     MM_editCmd.ActiveConnection.Close
 	
